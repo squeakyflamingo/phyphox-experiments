@@ -6,4 +6,11 @@ Their experiments are available in the directory `./hebergement.universite-paris
 Top-level experiments are custom by me. I modified the arduino code in `./nano_phyphox_v1/` to add them.
 
 ## QR-Codes
-Coming soon...
+### Allgemeine Gasgleichung
+![QR-Code - Allgemeine Gasgleichung](./qr/Allgemeine%20Gasgleichung.png)
+
+### Senkrechter Wurf
+![QR-Code - Allgemeine Gasgleichung](./qr/Senkrechter%20Wurf.png)
+
+### All from Physics Reimagined
+![QR-Code - Physics Reimagined](./hebergement.universite-paris-saclay.fr/qr-all.png)
