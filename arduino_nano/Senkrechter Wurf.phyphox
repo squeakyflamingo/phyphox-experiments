@@ -5,20 +5,20 @@
     <description></description>
     <icon format="string">SkW</icon>
     <data-containers>
+        <container size="0" static="false">time</container>
+        <container size="0" static="false">praw</container>
+        <container size="0" static="false">p</container>
+        <container size="0" static="false">h</container>
         <container size="0" static="false">v</container>
         <container size="0" static="false">a</container>
-        <container size="0" static="false">t</container>
-        <container size="1000" static="false">praw</container>
         <container size="1" static="false">Output 3</container>
         <container size="1" static="false">Output 4</container>
         <container size="1" static="false">Output 5</container>
         <container size="1" static="false">Output 6</container>
-        <container size="0" static="false">hNN</container>
-        <container size="0" static="false">p</container>
     </data-containers>
     <input>
-        <bluetooth editor:uuid="101" editor:posx="100" editor:posy="250" id="Sense"   mode="notification" rate="1" subscribeOnStart="false">
-            <output char="cddf1002-30f7-4671-8b43-5e40ba53514a" conversion="float32LittleEndian" offset="0">t</output>
+        <bluetooth editor:uuid="101" editor:posx="118.316650390625" editor:posy="189.75" id="Sense"   mode="notification" rate="1" subscribeOnStart="false">
+            <output char="cddf1002-30f7-4671-8b43-5e40ba53514a" conversion="float32LittleEndian" offset="0">time</output>
             <output char="cddf1002-30f7-4671-8b43-5e40ba53514a" conversion="float32LittleEndian" offset="4">praw</output>
             <output char="cddf1002-30f7-4671-8b43-5e40ba53514a" conversion="float32LittleEndian" offset="8">Output 3</output>
             <output char="cddf1002-30f7-4671-8b43-5e40ba53514a" conversion="float32LittleEndian" offset="12">Output 4</output>
@@ -27,56 +27,56 @@
         </bluetooth>
     </input>
     <output>
-        <bluetooth editor:uuid="104" editor:posx="650" editor:posy="250" id="Sense"  >
+        <bluetooth editor:uuid="104" editor:posx="1323.4500122070312" editor:posy="100.88330078125" id="Sense"  >
             <config char="cddf1003-30f7-4671-8b43-5e40ba53514a" conversion="float32LittleEndian">12.0</config>
         </bluetooth>
     </output>
     <analysis sleep="0"  onUserInput="false">
-        <multiply editor:uuid="150" editor:posx="378.316650390625" editor:posy="346.1166687011719">
+        <multiply editor:uuid="172" editor:posx="369.5333251953125" editor:posy="342.1499938964844">
             <input as="factor" clear="false">praw</input>
             <input as="factor" type="value">10</input>
-            <output as="product" clear="false">p</output>
+            <output as="product">p</output>
         </multiply>
-        <formula editor:uuid="151" editor:posx="657.8333129882812" editor:posy="428.66668701171875" formula="44330.769230769*(1-([1_]/1013.25)^0.190294957)">
+        <formula editor:uuid="173" editor:posx="602.2333374023438" editor:posy="428.566650390625" formula="44330.769230769*(1-([1_]/1013.25)^0.190294957)">
             <input as="in" clear="false">p</input>
-            <output as="out" clear="false">hNN</output>
+            <output as="out">h</output>
         </formula>
-        <differentiate editor:uuid="152" editor:posx="924.9166870117188" editor:posy="633.4166870117188">
-            <input as="in" clear="false">hNN</input>
-            <output as="out" clear="false">v</output>
+        <differentiate editor:uuid="174" editor:posx="821.0499877929688" editor:posy="547.2999877929688">
+            <input as="in" clear="false">h</input>
+            <output as="out">v</output>
         </differentiate>
-        <differentiate editor:uuid="153" editor:posx="1118.566650390625" editor:posy="789.11669921875">
+        <differentiate editor:uuid="175" editor:posx="1033.2333984375" editor:posy="702.8499755859375">
             <input as="in" clear="false">v</input>
-            <output as="out" clear="false">a</output>
+            <output as="out">a</output>
         </differentiate>
     </analysis>
     <views>
-        <view label="Differenzierung">
-            <graph editor:uuid="200" editor:posx="1364.699951171875" editor:posy="369.5333251953125" label="Höhe über NN" aspectRatio="2.5" style="lines" lineWidth="1" color="ff7e22" partialUpdate="false" history="1" labelX="Zeit" labelY="Höhe" labelZ="" unitX="s" unitY="m" unitZ="" logX="false" logY="false" logZ="false" xPrecision="3" yPrecision="3" zPrecision="3" scaleMinX="auto" scaleMaxX="auto" scaleMinY="auto" scaleMaxY="auto" scaleMinZ="auto" scaleMaxZ="auto" minX="0" maxX="0" minY="0" maxY="0" minZ="0" maxZ="0"  mapWidth="0"       >
-                <input axis="x">t</input>
-                <input axis="y">hNN</input>
+        <view label="Bewegung">
+            <graph editor:uuid="156" editor:posx="1321.816650390625" editor:posy="407.5999755859375" label="Höhe über NN" aspectRatio="2.5" style="lines" lineWidth="1" color="ff7e22" partialUpdate="true" history="1" labelX="Zeit" labelY="Höhe" labelZ="" unitX="s" unitY="m" unitZ="" logX="false" logY="false" logZ="false" xPrecision="3" yPrecision="3" zPrecision="3" scaleMinX="auto" scaleMaxX="auto" scaleMinY="auto" scaleMaxY="auto" scaleMinZ="auto" scaleMaxZ="auto" minX="0" maxX="0" minY="0" maxY="0" minZ="0" maxZ="0"  mapWidth="0"       >
+                <input axis="x">time</input>
+                <input axis="y">h</input>
             </graph>
-            <graph editor:uuid="162" editor:posx="1377.38330078125" editor:posy="578.4833374023438" label="Geschwindigkeit" aspectRatio="2.5" style="lines" lineWidth="1" color="ff7e22" partialUpdate="false" history="1" labelX="Zeit" labelY="Geschwindigkeit" labelZ="" unitX="s" unitY="m/s" unitZ="" logX="false" logY="false" logZ="false" xPrecision="3" yPrecision="3" zPrecision="3" scaleMinX="auto" scaleMaxX="auto" scaleMinY="auto" scaleMaxY="auto" scaleMinZ="auto" scaleMaxZ="auto" minX="0" maxX="0" minY="0" maxY="0" minZ="0" maxZ="0"  mapWidth="0"       >
-                <input axis="x">t</input>
+            <graph editor:uuid="157" editor:posx="1328.5" editor:posy="558.7000122070312" label="Geschwindigkeit" aspectRatio="2.5" style="lines" lineWidth="1" color="ff7e22" partialUpdate="true" history="1" labelX="Zeit" labelY="Geschwindigkeit" labelZ="" unitX="s" unitY="m/s" unitZ="" logX="false" logY="false" logZ="false" xPrecision="3" yPrecision="3" zPrecision="3" scaleMinX="auto" scaleMaxX="auto" scaleMinY="auto" scaleMaxY="auto" scaleMinZ="auto" scaleMaxZ="auto" minX="0" maxX="0" minY="0" maxY="0" minZ="0" maxZ="0"  mapWidth="0"       >
+                <input axis="x">time</input>
                 <input axis="y">v</input>
             </graph>
-            <graph editor:uuid="163" editor:posx="1379.13330078125" editor:posy="770.2833251953125" label="Beschleunigung" aspectRatio="2.5" style="lines" lineWidth="1" color="ff7e22" partialUpdate="false" history="1" labelX="Zeit" labelY="Beschleunigung" labelZ="" unitX="t" unitY="m/s²" unitZ="" logX="false" logY="false" logZ="false" xPrecision="3" yPrecision="3" zPrecision="3" scaleMinX="auto" scaleMaxX="auto" scaleMinY="auto" scaleMaxY="auto" scaleMinZ="auto" scaleMaxZ="auto" minX="0" maxX="0" minY="0" maxY="0" minZ="0" maxZ="0"  mapWidth="0"       >
-                <input axis="x">t</input>
+            <graph editor:uuid="158" editor:posx="1331.4833984375" editor:posy="707.88330078125" label="Beschleunigung" aspectRatio="2.5" style="lines" lineWidth="1" color="ff7e22" partialUpdate="true" history="1" labelX="Zeit" labelY="Beschleunigung" labelZ="" unitX="t" unitY="m/s²" unitZ="" logX="false" logY="false" logZ="false" xPrecision="3" yPrecision="3" zPrecision="3" scaleMinX="auto" scaleMaxX="auto" scaleMinY="auto" scaleMaxY="auto" scaleMinZ="auto" scaleMaxZ="auto" minX="0" maxX="0" minY="0" maxY="0" minZ="0" maxZ="0"  mapWidth="0"       >
+                <input axis="x">time</input>
                 <input axis="y">a</input>
             </graph>
         </view>
         <view label="Rohdaten">
-            <graph editor:uuid="160" editor:posx="1375.7000122070312" editor:posy="201.4666748046875" label="Druck" aspectRatio="2.5" style="lines" lineWidth="1" color="ff7e22" partialUpdate="false" history="1" labelX="Zeit" labelY="Druck" labelZ="" unitX="s" unitY="hPa" unitZ="" logX="false" logY="false" logZ="false" xPrecision="3" yPrecision="3" zPrecision="3" scaleMinX="auto" scaleMaxX="auto" scaleMinY="auto" scaleMaxY="auto" scaleMinZ="auto" scaleMaxZ="auto" minX="0" maxX="0" minY="0" maxY="0" minZ="0" maxZ="0"  mapWidth="0"       >
-                <input axis="x">t</input>
+            <graph editor:uuid="159" editor:posx="1324.1666870117188" editor:posy="215.75" label="Druck" aspectRatio="2.5" style="lines" lineWidth="1" color="ff7e22" partialUpdate="true" history="1" labelX="Zeit" labelY="Druck" labelZ="" unitX="s" unitY="hPa" unitZ="" logX="false" logY="false" logZ="false" xPrecision="2" yPrecision="2" zPrecision="2" scaleMinX="auto" scaleMaxX="auto" scaleMinY="auto" scaleMaxY="auto" scaleMinZ="auto" scaleMaxZ="auto" minX="0" maxX="0" minY="0" maxY="0" minZ="0" maxZ="0"  mapWidth="0"       >
+                <input axis="x">time</input>
                 <input axis="y">p</input>
             </graph>
         </view>
     </views>
     <export>
-        <set name="Raw data">
-            <data name="time (s)">t</data>
+        <set name="Raw Data">
+            <data name="time (s)">time</data>
             <data name="pressure (hPa)">p</data>
-            <data name="hieght over NN (m)">hNN</data>
+            <data name="height over NN (m)">h</data>
             <data name="velocity (m/s)">v</data>
             <data name="acceleration (m/s²)">a</data>
         </set>
