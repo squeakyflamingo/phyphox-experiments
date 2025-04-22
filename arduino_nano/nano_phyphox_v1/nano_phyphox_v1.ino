@@ -195,19 +195,26 @@ void isochoricChoice() { // custom experiment :^)
 }
 
 void pressureAvg() { // custom experiment :^)
-    float pressureVals[5], pressureAverage;
-    int i;
+    int i, intervall;
+    intervall = 3;
+
+    float pressureVals[intervall], pressureAverage;
     
     IMU.end();
     first_time = millis();
     
-    for(i=0;i<5;i++) {
+    for(i=0;i<intervall;i++) {
         pressureVals[i] = BARO.readPressure();
-        delay(period/2);
+        delay(period/intervall);
     }
 
     first_difference_float = ((float)first_time-(float)initial_time)/1000;
-    pressureAverage = (pressureVals[0] + pressureVals[1] + pressureVals[2] + pressureVals[3] + pressureVals[4])/5.0;
+
+    pressureAverage = 0.0;
+    for(i=0;i<intervall;i++) {
+        pressureAverage = pressureAverage + pressureVals[i];
+    }
+    pressureAverage = pressureAverage/intervall;
     
     PhyphoxBLE::write(first_difference_float, pressureAverage);
     IMU.begin();
